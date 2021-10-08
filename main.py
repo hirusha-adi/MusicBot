@@ -11,6 +11,7 @@ except:
     import discord
     from discord.ext import commands
 
+from keep_alive import keep_alive
 
 botconfigdata = json.load(open("config.json", "r"))
 bot_prefix = botconfigdata["prefix"]
@@ -19,6 +20,8 @@ bot_name = botconfigdata["bot-name"]
 bot_av = botconfigdata["bot-av-url"]
 bp = bot_prefix
 token = botconfigdata["token"]
+# token = os.environ['TOKEN']
+
 
 bot = commands.Bot(command_prefix=bot_prefix)
 bot.remove_command('help')
@@ -40,15 +43,15 @@ start_time = None
 
 @bot.event
 async def on_ready():
-    print(f'Logged in as {bot.user.name}')
-    print(f'Discord.py API version: {discord.__version__}')
-    print(f'Python version: {platform.python_version()}')
+    print(f'[+] Logged in as {bot.user.name}')
+    print(f'[+] [+] Discord.py API version: {discord.__version__}')
+    print(f'[+] Python version: {platform.python_version()}')
 
     global start_time
     start_time = time.time()
 
-    await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=f"The simple music streaming bot"))
-    print('Bot is ready!')
+    await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=f"The simple music bot"))
+    print('[+] Bot is ready!')
 
     bot.load_extension('musiccog')
 
@@ -206,7 +209,7 @@ async def uptime(ctx):
 
 @bot.command()
 async def creator(ctx):
-    ctx.send(f"Bot made by **{bot_cretor}**")
+    await ctx.send(f"Bot made by **{bot_cretor}**")
 
 
 @bot.event
@@ -227,5 +230,5 @@ async def on_command_error(ctx, error):
         await ctx.send(embed=embed)
         return
 
-
+keep_alive()
 bot.run(token)
