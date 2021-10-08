@@ -1,8 +1,9 @@
-import discord, platform, time, os, json
-from discord.ext import commands
-from keep_alive import keep_alive
+import platform, time, os, json
 
 try:
+    import discord
+    from discord.ext import commands
+except:
     if platform.system().lower().startswith('win'):
         os.system("pip3 install discord.py")
         os.system("pip3 install dismusic")
@@ -11,19 +12,17 @@ try:
         os.system("pip install discord.py")
         os.system("pip install dismusic==1.0.1")
         os.system("pip install discord-custom-help")
-except:
-  print("Error")
+    import discord
+    from discord.ext import commands
 
-# token = os.environ['TOKEN']
 botconfigdata = json.load(open("config.json", "r"))
 bot_prefix = botconfigdata["prefix"]
 token = botconfigdata["token"]
 
 bot = commands.Bot(command_prefix=bot_prefix)
-# bot.remove_command('help')
 
 try:
-  print("connectin")
+  print("connecting")
   bot.lava_nodes = [
     {
       'host':"lava.link",
@@ -43,7 +42,7 @@ start_time = None
 
 @bot.event
 async def on_ready():
-    print(f'Logged in as {bot.user.name}')
+    print(f'Logged in as {bot.user} | {bot.user.id} | {bot.user}')
     print(f'Discord.py API version: {discord.__version__}')
     print(f'Python version: {platform.python_version()}')
 
@@ -56,5 +55,5 @@ async def on_ready():
     bot.load_extension('dismusic')
     bot.load_extension('dch')
 
-# keep_alive()
+
 bot.run(token)

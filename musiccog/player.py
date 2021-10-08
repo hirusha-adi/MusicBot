@@ -59,7 +59,7 @@ class DisPlayer(Player):
         track = self.current
 
         embed = discord.Embed(
-            title=track.title, url=track.uri, color=discord.Color(0x2F3136)
+            title=track.title, url=track.uri, color=discord.Color(0xff0000)
         )
         embed.set_author(
             name=track.author, url=track.uri, icon_url=self.bot.user.avatar_url

@@ -7,8 +7,7 @@ from discord.ext import commands
 from .checks import in_same_channel, player_connected, voice_connected
 
 
-class Music(commands.Cog, name="music"):
-    """Music commands"""
+class Music(commands.Cog):
 
     def __init__(self, bot):
         self.bot = bot
@@ -315,7 +314,7 @@ class Music(commands.Cog, name="music"):
         if len(queue) < 1:
             return await ctx.send("Nothing is in the queue.")
 
-        embed = discord.Embed(color=discord.Color(0x2F3136))
+        embed = discord.Embed(color=discord.Color(0xff0000))
         embed.set_author(name="Queue", icon_url="https://cdn.shahriyar.dev/list.png")
 
         tracks = ""
@@ -354,7 +353,7 @@ class Music(commands.Cog, name="music"):
             "4️⃣": ["Piano", wavelink.eqs.Equalizer.piano()],
         }
 
-        embed = discord.Embed(title="Select Equalizer")
+        embed = discord.Embed(title="Select Equalizer", color=0xff0000)
         embed.description = f"Current Eq - **{player.eq.name}**\n\n1. Flat \n2. Boost\n3. Metal\n4. Piano"
         embed.set_thumbnail(url="https://cdn.shahriyar.dev/equalizer.png")
 
