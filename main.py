@@ -1,18 +1,20 @@
-import discord, platform, time, os, json, datetime
-from discord.ext import commands
-from keep_alive import keep_alive
+import platform, time, os, json, datetime
 
 try:
     if platform.system().lower().startswith('win'):
             os.system("pip3 install discord.py")
             os.system("pip3 install dismusic==1.0.1")
-            os.system("pip3 install discord-custom-help")
     else:
             os.system("pip install discord.py")
             os.system("pip install dismusic==1.0.1")
             os.system("pip install discord-custom-help")
 except:
   print("Error")
+
+import discord
+from discord.ext import commands
+from keep_alive import keep_alive
+
 
 # token = os.environ['TOKEN']
 botconfigdata = json.load(open("config.json", "r"))
@@ -37,7 +39,9 @@ bot.lava_nodes = [
   }
 ]
 
+
 start_time = None
+
 
 @bot.event
 async def on_ready():
@@ -48,10 +52,11 @@ async def on_ready():
     global start_time
     start_time = time.time()
 
-    await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=f"{len(bot.guilds)} servers!"))
+    await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=f"The simple music streaming bot"))
     print('Bot is ready!')
 
     bot.load_extension('dismusic')
+
 
 @bot.command()
 async def help(ctx, subtype="all"):
@@ -194,10 +199,10 @@ async def uptime(ctx):
     embed3.set_footer(text=f"Requested by {ctx.author.name}")
     await ctx.send(embed=embed3)
 
+
 @bot.command()
 async def creator(ctx):
     ctx.send(f"Bot made by {bot_cretor}")
 
 
-# keep_alive()
 bot.run(token)
