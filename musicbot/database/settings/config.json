@@ -1,0 +1,8 @@
+{   
+    "BOT_TOKEN":"TokenGoesHere",
+    "BOT_PREFIX":".",
+    "CREATOR_NAME":"ZeaCeR#5641",
+    "BOT_NAME":"MusicBot",
+    "BOT_AVATAR_URL":"https://cdn.discordapp.com/attachments/877796755234783273/896052895772991608/Avatar.png",
+    "RUN_FLASK_WEB_SERVER":"y"
+}
