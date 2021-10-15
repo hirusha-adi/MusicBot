@@ -1,2 +1,3 @@
 # MusicBot
-How does this even work?
+
+The simple musicbot
