@@ -1,5 +1,6 @@
 import json
 
+
 class BotInfo:
     with open("musicbot/database/settings/config.json", "r", encoding="utf-8") as file:
         data = json.loads(file.read())

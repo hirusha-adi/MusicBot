@@ -1,4 +1,7 @@
-import platform, time, os, json
+import platform
+import time
+import os
+import json
 
 try:
     import discord
@@ -22,23 +25,24 @@ token = botconfigdata["token"]
 bot = commands.Bot(command_prefix=bot_prefix)
 
 try:
-  print("connecting")
-  bot.lava_nodes = [
-    {
-      'host':"lava.link",
-      'port':80,
-      'rest_uri':f'http://lava.link:80',
-      'identifier':'MAIN',
-      'password':'anything',
-      'region':'singapore'
-    }
-  ]
-  print("connected")
+    print("connecting")
+    bot.lava_nodes = [
+        {
+            'host': "lava.link",
+            'port': 80,
+            'rest_uri': f'http://lava.link:80',
+            'identifier': 'MAIN',
+            'password': 'anything',
+            'region': 'singapore'
+        }
+    ]
+    print("connected")
 except Exception as e:
-  print(e)
-  
+    print(e)
+
 
 start_time = None
+
 
 @bot.event
 async def on_ready():
